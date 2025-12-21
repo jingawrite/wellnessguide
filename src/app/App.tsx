@@ -80,7 +80,7 @@ export default function App() {
         </header>
 
         <div className="space-y-4">
-          {contents.map((content) => (
+          {[...contents].sort((a, b) => b.id - a.id).map((content) => (
             <ContentCard
               key={content.id}
               id={content.id}
