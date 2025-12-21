@@ -2,13 +2,25 @@ import { ArrowLeft, ExternalLink } from 'lucide-react';
 
 interface ContentDetailProps {
   title: string;
-  videoId: string;
+  videoId?: string;
+  imageUrl?: string;
   comment: string;
   products?: { name: string; link: string; }[];
   onBack: () => void;
 }
 
-export function ContentDetail({ title, videoId, comment, products, onBack }: ContentDetailProps) {
+// 볼드체 마크다운을 HTML로 변환하는 함수
+function formatComment(text: string) {
+  return text.split(/(\*\*.*?\*\*)/g).map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      const boldText = part.slice(2, -2);
+      return <strong key={index}>{boldText}</strong>;
+    }
+    return <span key={index}>{part}</span>;
+  });
+}
+
+export function ContentDetail({ title, videoId, imageUrl, comment, products, onBack }: ContentDetailProps) {
   return (
     <div className="min-h-screen bg-background">
       <div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border z-10">
@@ -27,25 +39,35 @@ export function ContentDetail({ title, videoId, comment, products, onBack }: Con
         <div>
           <h1 className="text-foreground mb-6">{title}</h1>
           
-          <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${videoId}`}
-              title={title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </div>
+          {imageUrl ? (
+            <div className="rounded-lg overflow-hidden shadow-lg">
+              <img 
+                src={imageUrl} 
+                alt={title}
+                className="w-full h-auto"
+              />
+            </div>
+          ) : videoId ? (
+            <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title={title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          ) : null}
         </div>
 
         <div className="bg-card rounded-lg p-6 shadow-sm">
           <div className="mb-3 text-muted-foreground">큐레이터 진가의 코멘트</div>
-          <p className="text-foreground leading-relaxed whitespace-pre-line">
-            {comment}
-          </p>
+          <div className="text-foreground leading-relaxed whitespace-pre-line">
+            {formatComment(comment)}
+          </div>
         </div>
 
         {products && products.length > 0 && (
