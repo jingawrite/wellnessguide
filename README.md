@@ -1,11 +1,11 @@
+# Wellness Guide Website
 
-  # Wellness Guide Website
+웰니스 가이드 - 일상 속 균형과 건강을 위한 큐레이션 콘텐츠 피부 케어, 마음 챙김, 여행 팁, 영양 정보 등 실생활 웰니스 가이드를 제공하는 프로젝트. 윤형근 작가의 먹빛 미니멀 디자인을 활용한 모바일 최적화 사이트 소스 코드입니다. 유튜브 임베드, 큐레이터 코멘트, 관련 제품 추천으로 구성된 콘텐츠를 지속적으로 업데이트합니다.
 
-  This is a code bundle for Wellness Guide Website. The original project is available at https://www.figma.com/design/hZlqP4S8RHuPlqQVT6Cn79/Wellness-Guide-Website.
+This is a code bundle for Wellness Guide Website. The original project is available at https://www.figma.com/design/hZlqP4S8RHuPlqQVT6Cn79/Wellness-Guide-Website.
 
-  ## Running the code
+## Running the code
 
-  Run `npm i` to install the dependencies.
+Run `npm i` to install the dependencies.
 
-  Run `npm run dev` to start the development server.
-  
+Run `npm run dev` to start the development server.
